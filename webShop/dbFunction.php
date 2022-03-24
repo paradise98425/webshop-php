@@ -36,6 +36,33 @@
                                 or die(mysqli_error());  
             return $qr;      
         } 
+
+        // function to login user 
+        public function UserLogin($email, $password) {
+            // trying to fetch record from the database with the email 
+            // and password that matches the details coming from the form
+            $result = mysqli_query($this->conn, 
+                                "SELECT * FROM users WHERE email = '".$email."' AND password = '".$password."'"
+                            ) 
+                            or die(mysqli_error()); 
+            
+            $user_data = mysqli_fetch_array($result);       // Storing the details of the fetched result in the variable
+            $no_rows = mysqli_num_rows($result);            // Storing the number of rows fetched
+            
+            if ($no_rows == 1){
+                // if login is true, we store some information about the user
+                $_SESSION['login'] = true;
+                $_SESSION['user_name'] = $user_data['name'];
+                $_SESSION['user_email'] = $user_data['email'];
+                return TRUE;  
+            }  
+            else  
+            {  
+                return FALSE;  
+            }  
+        }
+
+        
     }
 
 ?>

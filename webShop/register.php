@@ -102,7 +102,6 @@ session_start();
                 $register = $funcObj->UserRegister($name, $address, $phone_number, $email, $password);  
                 if($register){
                     $success_message = "Registration has been successfully done";  
-                    //header("Location: register.php");
                 }
                 else {  
                     $error_message = "Registration failed. Please try again";  
@@ -268,7 +267,7 @@ session_start();
                         <!-- Already have account div begins -->
                         <div class="mt-6 text-gray-700">
                             Already have an account?
-                            <a class="text-blue-600 hover:underline" href="login.php">
+                            <a class="text-blue-600 hover:underline" href="index.php">
                                 Log in
                             </a>
                         </div>
