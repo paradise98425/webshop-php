@@ -1,6 +1,11 @@
 <!-- starting session inorder to get the variables from the registration-action.php file -->
 <?php
 session_start();
+
+// if the login is true, they can directly get inside the system
+if($_SESSION['login']){  
+    header("Location:home.php");  
+  }
 ?>
 
 <!-- php code begins -->

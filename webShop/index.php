@@ -1,6 +1,11 @@
 <!-- starting session inorder to get the variables from the registration-action.php file -->
 <?php
 session_start();
+
+// if the login is true, they can directly get inside the system
+if($_SESSION['login']){  
+  header("Location:home.php");  
+}  
 ?>
 
 <!-- php code begins -->
@@ -63,6 +68,7 @@ session_start();
         // logic for login now
         $login = $funcObj->UserLogin($email, $password);
         if ($login){
+          $_SESSION['shopping_cart'] = array();      // Initializing the empty shopping cart
           header("Location: home.php");
         }  
         else {

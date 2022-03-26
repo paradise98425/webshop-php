@@ -5,7 +5,7 @@
         // whereas include and include_once only show a warning and 
         // continue to load the rest of the page.
 
-        // this is a class includes all the functions related to database
+        // this class includes all the functions related to database
         // operation in this project. We are doing it this way so that
         // whenever we have to do the same operation in different 
         // situations, we can simply call the function and use it instead 
@@ -25,6 +25,10 @@
             $dbc = new dbConnect();
             $this->conn = $dbc->getConnection();
         }
+
+        /****************************************************************************************************** */
+                // Functions related to User registration, user login 
+        /****************************************************************************************************** */
 
         // function to register user in the databse
         public function UserRegister($name, $address, $phone_number, $email, $password) { 
@@ -62,7 +66,57 @@
             }  
         }
 
-        
+        /****************************************************************************************************** */
+                // Functions related to fetching all the categories, sub-categories and products 
+        /****************************************************************************************************** */
+
+        // function to fetch the categories 
+        public function FetchCategories() {
+            // fetching all the categories from the table
+            $result = mysqli_query($this->conn, 
+                                "SELECT * FROM categories"
+                            ) 
+                            or die(mysqli_error());
+            
+            return $result;         // returning the result
+        }
+
+        // function to fetch the sub-categories 
+        public function FetchSubCategories() {
+            // fetching all the categories from the table
+            $result = mysqli_query($this->conn, 
+                                "SELECT * FROM sub_categories"
+                            ) 
+                            or die(mysqli_error());
+            
+            return $result;         // returning the result
+        }
+
+        // function to fetch all the products 
+        public function FetchProducts() {
+            // fetching all the categories from the table
+            $result = mysqli_query($this->conn, 
+                                "SELECT * FROM products"
+                            ) 
+                            or die(mysqli_error());
+            
+            return $result;         // returning the result
+        }
+
+        /****************************************************************************************************** */
+                // Functions related to fetching the products based on subcategories products 
+        /****************************************************************************************************** */
+
+        // function to fetch all the products of specific subcategory
+        public function FetchProductsFromSubCategory($subCategoryId) {
+            // fetching all the categories from the table
+            $result = mysqli_query($this->conn, 
+                                "SELECT * FROM products WHERE product_sub_category_id = '".$subCategoryId."'"
+                            ) 
+                            or die(mysqli_error());
+            
+            return $result;         // returning the result
+        }
     }
 
 ?>
